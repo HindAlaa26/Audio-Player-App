@@ -67,8 +67,14 @@ class _SongState extends State<Song> {
                     if (snapshot.data == null) {
                       return const SizedBox.shrink();
                     }
-                    return Slider(
+                    return SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: Colors.grey.shade100,
+                      ),
+                      child: Slider(
                         activeColor: Colors.blueGrey,
+                        overlayColor:
+                            MaterialStateProperty.all(Colors.blueGrey.shade400),
                         value: snapshot.data?.currentPosition.inSeconds
                                 .toDouble() ??
                             0.0,
@@ -77,7 +83,9 @@ class _SongState extends State<Song> {
                             snapshot.data?.duration.inSeconds.toDouble() ?? 0.0,
                         onChanged: (value) {
                           seekPlayer(value);
-                        });
+                        },
+                      ),
+                    );
                   },
                 )
               ],

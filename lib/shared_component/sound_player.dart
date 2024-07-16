@@ -161,16 +161,22 @@ class _SoundPlayerState extends State<SoundPlayer> {
                     setData: setSpeed,
                   ),
                   //song slider
-                  Slider(
-                      activeColor: Colors.blueGrey,
-                      value:
-                          playingInfo?.currentPosition.inSeconds.toDouble() ??
-                              0.0,
-                      min: 0,
-                      max: snapshot.data?.duration.inSeconds.toDouble() ?? 0.0,
-                      onChanged: (value) {
-                        seekSlider(value);
-                      }),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      inactiveTrackColor: Colors.grey.shade100,
+                    ),
+                    child: Slider(
+                        activeColor: Colors.blueGrey,
+                        value:
+                            playingInfo?.currentPosition.inSeconds.toDouble() ??
+                                0.0,
+                        min: 0,
+                        max:
+                            snapshot.data?.duration.inSeconds.toDouble() ?? 0.0,
+                        onChanged: (value) {
+                          seekSlider(value);
+                        }),
+                  ),
                   // song time
                   Text(
                     "${convertSeconds(playingInfo?.currentPosition.inSeconds ?? 0)} / ${convertSeconds(playingInfo?.duration.inSeconds ?? 0)}",
