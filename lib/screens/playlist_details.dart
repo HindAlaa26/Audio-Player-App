@@ -1,11 +1,11 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:audio_player/screens/home_screen.dart';
 import 'package:audio_player/shared_component/song.dart';
 import 'package:flutter/material.dart';
 
 class PlaylistDetails extends StatelessWidget {
   final Playlist playlist;
   const PlaylistDetails({super.key, required this.playlist});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +14,8 @@ class PlaylistDetails extends StatelessWidget {
         backgroundColor: Colors.blueGrey.shade400,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomePage()));
           },
           icon: const Icon(
             Icons.arrow_back,

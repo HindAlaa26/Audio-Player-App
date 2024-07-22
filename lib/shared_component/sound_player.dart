@@ -48,6 +48,15 @@ class _SoundPlayerState extends State<SoundPlayer> {
   }
 
   @override
+  void dispose() {
+    try {
+      if (assetsAudioPlayer.isPlaying.value) assetsAudioPlayer.stopped;
+      assetsAudioPlayer.dispose();
+    } catch (e) {}
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -201,7 +210,7 @@ class _SoundPlayerState extends State<SoundPlayer> {
           top: 0,
           child: IconButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PlaylistDetails(

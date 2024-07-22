@@ -17,7 +17,14 @@ class _SongState extends State<Song> {
     assetsAudioPlayer.open(widget.audio, autoStart: false);
     super.initState();
   }
-
+  @override
+  void dispose() {
+    try {
+      if (assetsAudioPlayer.isPlaying.value) assetsAudioPlayer.stopped;
+      assetsAudioPlayer.dispose();
+    } catch (e) {}
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
