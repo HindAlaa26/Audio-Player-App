@@ -1,5 +1,4 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:audio_player/shared_component/carousel_slider.dart';
 import 'package:audio_player/shared_component/sound_player.dart';
 import 'package:flutter/material.dart';
 
@@ -67,18 +66,6 @@ class _HomePageState extends State<HomePage> {
         )),
   ]);
   final List<Playlist> playlists = [];
-  final List<String> carouselSliderImage = [
-    'assets/images/beautiful.png',
-    'assets/images/relax .jpg',
-    'assets/images/piano.jpg',
-    'assets/images/river.jpg',
-  ];
-  final List<String> carouselSliderTitle = [
-    'Beautiful Song',
-    'Just Relax',
-    'Piano Song',
-    'River Tram',
-  ];
   @override
   void initState() {
     super.initState();
@@ -100,25 +87,15 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Column(
-            children: [
-              CarouselWithIndicator(
-                carouselSliderImage: carouselSliderImage,
-                carouselSliderTitle: carouselSliderTitle,
-              ),
-              Expanded(
-                child: ListView.separated(
-                    itemBuilder: (context, index) => SoundPlayer(
-                          playlist: playlists[index],
-                          heroTag: 'SoundPlayList-$index',
-                        ),
-                    separatorBuilder: (context, index) => const SizedBox(
-                          height: 20,
-                        ),
-                    itemCount: playlists.length),
-              ),
-            ],
-          ),
+          child: ListView.separated(
+              itemBuilder: (context, index) => SoundPlayer(
+                    playlist: playlists[index],
+                    heroTag: 'SoundPlayList-$index',
+                  ),
+              separatorBuilder: (context, index) => const SizedBox(
+                    height: 20,
+                  ),
+              itemCount: playlists.length),
         ),
       ),
     );
